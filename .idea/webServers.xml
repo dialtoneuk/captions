@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="5d78dcac-66da-492b-8f4f-8e3ebf84a820" name="owo" url="http://morpheus.feralhosting.com">
+        <fileTransfer host="morpheus.feralhosting.com" port="21" rootFolder="/media/e410/owo/www/owo.morpheus.feralhosting.com/public_html">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
