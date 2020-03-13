@@ -6,6 +6,7 @@ suited to websites wishing to display *ahem* pornography.
 
 ## Features
 
+* Mobile touch functionality and responsive scaling.
 * Self contained and uses no MySQL. Perfect for hosting with limited access to sudo and other commands.
 * Can handle **millions** of images at once.
 * View counting and other statistics.
