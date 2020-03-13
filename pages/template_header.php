@@ -62,6 +62,28 @@
         ::-webkit-scrollbar-thumb:hover {
             background: deeppink;
         }
+
+        a{
+            color:  dodgerblue;
+            font-weight: bolder;
+        }
+
+        img {
+            width: auto ;
+            max-width: 100% ;
+            height: auto ;
+        }
+
+        h2
+        {
+            font-size: 2vw;
+        }
+
+        .navbar
+        {
+
+            line-height: 3vw;
+        }
     </style>
     <script>
         document.oncontextmenu = new Function("return false;");

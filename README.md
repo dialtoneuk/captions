@@ -50,7 +50,7 @@ image database.
 ## Settings
 
 Captions comes with various declarations which are meant to be edited by a server administrator in the ``index.php``. At the
-top of ``index.php`` is where you can find these decelerations. Below is a brief description of each deceleration.
+top of ``index.php`` is where you can find these declarations. Below is a brief description of each deceleration.
 
 * ``LYDS_ENABLE_GENERATION`` Enables/Disables generation page, set to false once you have finished installing.
 * ``LYDS_ENABLE_VIEWED`` Will be changed in later version, turns off view counting on images.

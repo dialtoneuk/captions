@@ -120,9 +120,9 @@ else {
                 or
                 <a href="<?= make_link("", ["" => ""]) ?>">home</a>
             </span>
-            <p>
-                This page was generated on <?=date("d/m/Y H:i:s", time() )?>
-            </p>
+        <p>
+            This page was generated on <?=date("d/m/Y H:i:s", time() )?>
+        </p>
     </fieldset>
     <?php
 
