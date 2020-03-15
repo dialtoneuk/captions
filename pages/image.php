@@ -44,7 +44,7 @@ $image_location = "?hotlink&images={$image}";
         <span style="font-size: 80%; color: hotpink;">This caption has been viewed <?= $viewed ?> times.</span>
         You have viewed <i style="color: hotpink;"><?= @count(@$_SESSION["images"]) ?></i> captions.
         <span style="font-size: 100%; float: right;">
-        autoplay: <a onclick="clittymode()" id="text" style="color: hotpink">clittymode (off)</a>
+        autoplay: <a onclick="clittymode()" id="text" style="color: hotpink">on (10s)</a>
         & <a onclick="openFullscreen()" id="text_two" style="color: hotpink">larger</a>
     </span>
     </div>
@@ -149,9 +149,9 @@ $image_location = "?hotlink&images={$image}";
         }
 
         if (localStorage.getItem("clittymode") === "true") {
-            document.getElementById("text").innerText = "clittymode (on)";
+            document.getElementById("text").innerText = "(on) 10s";
         } else
-            document.getElementById("text").innerText = "clittymode (off)";
+            document.getElementById("text").innerText = "(off)";
 
         if (localStorage.getItem("clittymode") === "true") {
 

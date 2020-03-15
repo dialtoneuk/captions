@@ -1,5 +1,6 @@
 <?php
 $page = get_page();
+$stats = [];
 
 if (!file_exists($_SERVER["DOCUMENT_ROOT"] . "/cache/"))
     @mkdir($_SERVER["DOCUMENT_ROOT"] . "/cache");
@@ -13,7 +14,23 @@ else {
     $file_name = "data/list{$page}" . LYDS_DATA_FILEEXTENSION;
 
     if (file_exists($file_name) && time() < filemtime($file_name) + (60 * LYDS_LIST_REFRESHRATE))
+    {
+
         $images = read_data($file_name);
+
+        foreach( $images as $image=>$file )
+        {
+
+            $cache_file = "cache/images/{$image}" . LYDS_DATA_FILEEXTENSION;
+
+            if (file_exists($cache_file))
+            {
+
+                $file = read_data($cache_file);
+                $stats[$image] = $file["viewed"];
+            }
+        }
+    }
     else {
 
         $opened_files = [];
@@ -22,15 +39,28 @@ else {
         //todo: could move this somewhere else
         for ($i = $start; $i < $start + LYDS_PAGE_MAX; $i++) {
 
-            $file = get_map_filename($i);
+            $cache_file = "cache/images/{$i}" . LYDS_DATA_FILEEXTENSION;
 
-            if (isset($opened_files[$file]))
-                $files = $opened_files[$file];
+            if (file_exists($cache_file))
+            {
+
+                $file = read_data($cache_file);
+                $images[$i] = $file["image"];
+                $stats[$i] = $file["viewed"];
+            }
             else
-                $opened_files[$file] = read_data($file);
+            {
 
-            if (isset($opened_files[$file][$i]))
-                $images[$i] = $opened_files[$file][$i];
+                $file = get_map_filename($i);
+
+                if (isset($opened_files[$file]))
+                    $files = $opened_files[$file];
+                else
+                    $opened_files[$file] = read_data($file);
+
+                if (isset($opened_files[$file][$i]))
+                    $images[$i] = $opened_files[$file][$i];
+            }
         }
 
         if (!empty($images))
@@ -83,13 +113,17 @@ else {
                         <img class="smallimage"
                              src="<?= $image_location ?>" alt="sissy image">
                     </a>
+                    <span style="font-size: 1vw;">
+                           <?php
+                           if( isset ($stats[ $image ] ) )
+                               echo($stats[ $image ]);
+                           ?>
+                        Views
+                    </span>
                 </div>
                 <?php
             }
         ?>
-        <p>
-            This page was generated on <?=date("d/m/Y H:i:s", time() )?>
-        </p>
     </fieldset>
     <?php
 
