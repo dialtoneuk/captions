@@ -34,48 +34,18 @@ $image_location = "?hotlink&images={$image}";
 <script>
 </script>
 <fieldset>
-    <h2>
-        Lyd's <i class="pinktext">Sissy</i> Captions #<?= $image ?>: <?= $file["filename"] ?>
-        <span><?= $file["extension"] ?></span>
-        <span style="float: right;" class="navbar">
-            <?php
-            if ($image > 0)
-            {
-            ?>
-            <a href="<?= make_link("", ["images" => $image - 1]) ?>">go back<a>
-            or
-            <?php
-            }
-            ?>
-                    <?php
-                    if (isset($stats) && isset($stats["image_count"])) {
-                        if ($image < $stats["image_count"] - 1) {
-                            ?>
-                            <a href="<?= make_link("", ["images" => $image + 1]) ?>">go forward</a>
-                            <?php
-                        }
-                    } else {
-                        ?>
-                        <a href="<?= make_link("", ["images" => $image + 1]) ?>">go forward</a>
-                        <?php
-                    }
-                    ?>
-            or
-            <a href="<?= make_link("", ["images" => $rand]) ?>">go random</a>
-            or
-            <a href="<?= make_link("", ["list" => ""]) ?>">view list</a>
-            or
-            <a href="<?= make_link("", ["history" => ""]) ?>">view history</a>
-        </span>
-    </h2>
+    <?php
+        include "navbar.php";
+    ?>
+    <p style="text-align: center; color: goldenrod; font-size: 75%; padding-bottom: 10px; margin: 0;">We will be moving to our own server soon! Stay put while we transfer things over. Your continued donations are appreciated!</p>
     <img class="mainimage" id="touchsurface"
          src="<?= $image_location ?>" alt="sissy image">
-    <div style="margin-top: 12px;">
+    <div style="margin-top: 12px; text-align: left;">
         <span style="font-size: 80%; color: hotpink;">This caption has been viewed <?= $viewed ?> times.</span>
         You have viewed <i style="color: hotpink;"><?= @count(@$_SESSION["images"]) ?></i> captions.
         <span style="font-size: 100%; float: right;">
         autoplay: <a onclick="clittymode()" id="text" style="color: hotpink">clittymode (off)</a>
-        & <a onclick="toggleFullscreen()" id="text_two" style="color: hotpink">fullscreen mode</a>
+        & <a onclick="openFullscreen()" id="text_two" style="color: hotpink">larger</a>
     </span>
     </div>
 </fieldset>
@@ -96,10 +66,6 @@ $image_location = "?hotlink&images={$image}";
             if (image < image_count) {
                 window.location.href = "<?=make_link("", ["images" => $image + 1])?>";
             }
-        } else if (e.keyCode == '27') {
-
-            localStorage.setItem("fullscreen", false);
-            document.getElementById("text_two").innerText = "fullscreen (off)";
         }
     }
 
@@ -116,20 +82,6 @@ $image_location = "?hotlink&images={$image}";
             localStorage.setItem("clittymode", "true");
             window.location.reload();
         }
-    }
-
-    function toggleFullscreen() {
-
-        if (localStorage.getItem("fullscreen") == "false") {
-
-            document.getElementById("text_two").innerText = "fullscreen (on)";
-            localStorage.setItem("fullscreen", "true");
-            openFullscreen();
-        } else {
-            localStorage.setItem("fullscreen", "false");
-            document.getElementById("text_two").innerText = "fullscreen (off)";
-        }
-
     }
 
     function openFullscreen() {
@@ -201,11 +153,6 @@ $image_location = "?hotlink&images={$image}";
         } else
             document.getElementById("text").innerText = "clittymode (off)";
 
-        if (localStorage.getItem("fullscreen") === "true") {
-            document.getElementById("text_two").innerText = "fullscreen (on)";
-        } else
-            document.getElementById("text_two").innerText = "fullscreen (off)";
-
         if (localStorage.getItem("clittymode") === "true") {
 
             setTimeout(function () {
@@ -223,13 +170,6 @@ $image_location = "?hotlink&images={$image}";
                 if (image < image_count)
                     window.location.href = "<?=make_link("", ["images" => $image + 1])?>";
         });
-
-        if (localStorage.getItem("fullscreen") == "true" && localStorage.getItem("clittymode") === "true") {
-
-            setTimeout(function () {
-                openFullscreen();
-            }, 1000);
-        }
     }
 </script>
 <script>

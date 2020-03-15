@@ -61,27 +61,10 @@ else {
         }
     </script>
     <fieldset>
-        <h2>
-            Lyd's <i class="pinktext">Sissy</i> Captions: all captions (page <?= $page ?> showing
-            max <?= LYDS_PAGE_MAX ?>)
-            <span style="float: right;">
-                <?php
-                if ($page > 0)
-                {
-                ?>
-                <a href="<?= make_link("", ["list" => "", "page" => $page - 1]) ?>">go back<a>
-                or
-                <?php
-                }
-                ?>
-                <a href="<?= make_link("", ["list" => "", "page" => $page + 1]) ?>">go forward</a>
-                or
-                <a href="<?= make_link("", ["history" => ""]) ?>">view history</a>
-                or
-                <a href="<?= make_link("", ["" => ""]) ?>">home</a>
-            </span>
-        </h2>
-
+        <?php
+        $title = "page";
+        include "navbar.php";
+        ?>
         <?php
 
         if (empty($images))
@@ -104,22 +87,6 @@ else {
                 <?php
             }
         ?>
-        <span style="font-size: 81%; float: right;">
-                <?php
-                if ($page > 0)
-                {
-                ?>
-                <a href="<?= make_link("", ["list" => "", "page" => $page - 1]) ?>">go back<a>
-                or
-                <?php
-                }
-                ?>
-                <a href="<?= make_link("", ["list" => "", "page" => $page + 1]) ?>">go forward</a>
-                or
-                <a href="<?= make_link("", ["history" => ""]) ?>">view history</a>
-                or
-                <a href="<?= make_link("", ["" => ""]) ?>">home</a>
-            </span>
         <p>
             This page was generated on <?=date("d/m/Y H:i:s", time() )?>
         </p>

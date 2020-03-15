@@ -5,27 +5,10 @@ $counter_two = 0;
 $start = LYDS_PAGE_MAX * $page;
 ?>
 <fieldset>
-    <h2>
-        Lyd's <i class="pinktext">Sissy</i> Captions: viewed captions (page <?= $page ?> showing
-        max <?= LYDS_PAGE_MAX ?>)
-        <span style="float: right;">
-            <?php
-            if ($page > 0)
-            {
-            ?>
-            <a href="<?= make_link("", ["history" => "", "page" => $page - 1]) ?>">go back<a>
-            or
-            <?php
-            }
-            ?>
-            <a href="<?= make_link("", ["history" => "", "page" => $page + 1]) ?>">go forward</a>
-            or
-            <a href="<?= make_link("", ["list" => ""]) ?>">view list</a>
-            or
-            <a href="<?= make_link("", ["" => ""]) ?>">home</a>
-        </span>
-    </h2>
-
+    <?php
+    $title = "page";
+    include "navbar.php";
+    ?>
     <?php
     if (!isset($_SESSION["images"]) || empty($_SESSION["images"]))
         echo("<p>You haven't viewed anything yet..");
@@ -63,20 +46,4 @@ $start = LYDS_PAGE_MAX * $page;
     if ($counter_two == 0)
         echo("Page not found...");
     ?>
-    <span style="font-size: 81%; float: right;">
-        <?php
-        if ($page > 0)
-        {
-        ?>
-        <a href="<?= make_link("", ["history" => "", "page" => $page - 1]) ?>">go back<a>
-        or
-        <?php
-        }
-        ?>
-        <a href="<?= make_link("", ["history" => "", "page" => $page + 1]) ?>">go forward</a>
-        or
-        <a href="<?= make_link("", ["list" => ""]) ?>">view list</a>
-        or
-        <a href="<?= make_link("", ["" => ""]) ?>">home</a>
-    </span>
 </fieldset>

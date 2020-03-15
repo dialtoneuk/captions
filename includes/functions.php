@@ -109,11 +109,7 @@ function generate_stats()
     if (file_exists("confirmations" . LYDS_DATA_FILEEXTENSION)) {
 
         $data = read_data("confirmations" . LYDS_DATA_FILEEXTENSION);
-
-        if (!isset($stats["confirmation_count"]))
-            $stats["confirmation_count"] = count($data);
-        else
-            $stats["confirmation_count"] += count($data);
+        $stats["confirmation_count"] = count($data);
     }
 
     file_put_contents("stats" . LYDS_DATA_FILEEXTENSION, serialize($stats));

@@ -7,6 +7,8 @@
 /**
  * TODO: albums? logins?
  * TODO: move "viewed" to stats maybe for efficiency
+ * TODO: Bake image data into lists page so doesn't hit hotlink (will need ffpmeg tho to build thumbnails)
+ * TODO: gallery mode (fullscreen mobile)
  */
 
 //Script Specific Declarations
@@ -66,9 +68,15 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
         <body>
         <?php
         if (isset($_GET["list"]))
+        {
+            $current_page = "list";
             include_once "pages/list.php";
+        }
         elseif (isset($_GET["history"]))
+        {
+            $current_page = "history";
             include_once "pages/history.php";
+        }
         elseif (isset($_GET["generate"]) && isset($_GET["password"]) && $_GET["password"] == LYDS_GENERATION_PASSWORD) {
 
             if (!LYDS_ENABLE_GENERATION)

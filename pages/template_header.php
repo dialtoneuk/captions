@@ -74,15 +74,16 @@
             height: auto ;
         }
 
-        h2
-        {
-            font-size: 2vw;
+        fieldset{
+            margin: 0;
+            padding-left: 12px;
+            padding-right: 12px;
+            padding-bottom: 12px;
         }
 
-        .navbar
+        h2
         {
-
-            line-height: 3vw;
+            font-size: 1vw;
         }
     </style>
     <script>
