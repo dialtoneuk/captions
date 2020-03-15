@@ -1,6 +1,6 @@
 <?php
 $page = get_page();
-$stats = [];
+$stats_images = [];
 
 if (!file_exists($_SERVER["DOCUMENT_ROOT"] . "/cache/"))
     @mkdir($_SERVER["DOCUMENT_ROOT"] . "/cache");
@@ -27,7 +27,7 @@ else {
             {
 
                 $file = read_data($cache_file);
-                $stats[$image] = $file["viewed"];
+                $stats_images[$image] = $file["viewed"];
             }
         }
     }
@@ -46,7 +46,7 @@ else {
 
                 $file = read_data($cache_file);
                 $images[$i] = $file["image"];
-                $stats[$i] = $file["viewed"];
+                $stats_images[$i] = $file["viewed"];
             }
             else
             {
@@ -109,17 +109,15 @@ else {
                         <a href='<?= make_link("", ["images" => $image]) ?>' style="color: hotpink; float: right;">view
                             caption</a>
                     </p>
-                    <a href="<?= make_link("", ["images" => $image]) ?>">
-                        <img class="smallimage"
-                             src="<?= $image_location ?>" alt="sissy image">
-                    </a>
-                    <span style="font-size: 1vw;">
+                    <span style="font-size: 2vw; float: right;">
                            <?php
-                           if( isset ($stats[ $image ] ) )
-                               echo($stats[ $image ]);
+                           if( isset ($stats_images[ $image ] ) )
+                               echo($stats_images[ $image ]);
                            ?>
                         Views
                     </span>
+                    <img class="smallimage"
+                         src="<?= $image_location ?>" alt="sissy image">
                 </div>
                 <?php
             }

@@ -7,6 +7,8 @@
 /**
  * TODO: albums? logins?
  * TODO: move "viewed" to stats maybe for efficiency
+ * TODO: Better stats which display the total size of all captions
+ * TODO: A tagging system, users tag an image with a keyphrase which is then stored in a file similar to the maps.
  * TODO: Bake image data into lists page so doesn't hit hotlink (will need ffpmeg tho to build thumbnails)
  * TODO: gallery mode (fullscreen mobile)
  */

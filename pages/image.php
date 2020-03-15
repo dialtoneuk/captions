@@ -149,9 +149,9 @@ $image_location = "?hotlink&images={$image}";
         }
 
         if (localStorage.getItem("clittymode") === "true") {
-            document.getElementById("text").innerText = "(on) 10s";
+            document.getElementById("text").innerText = "on 10s";
         } else
-            document.getElementById("text").innerText = "(off)";
+            document.getElementById("text").innerText = "off";
 
         if (localStorage.getItem("clittymode") === "true") {
 

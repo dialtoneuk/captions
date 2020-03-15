@@ -21,7 +21,7 @@
                 echo(sprintf('Page <i class="pinktext">%d</i>: showing %s elements', @$page, LYDS_PAGE_MAX ));
         }
     ?>
-    <span style="float: right; font-size: 1vw; line-height: 1vw" class="navbar">
+    <span class="navbar" style="font-size: 70%;">
         <?php
         switch( $title )
         {
