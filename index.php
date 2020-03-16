@@ -58,7 +58,7 @@ if (session_status() === PHP_SESSION_NONE)
 
 //process request
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
-
+    get:
     //Generate stats
     if (LYDS_ENABLE_STATS)
     {
@@ -78,12 +78,9 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
             $stats = read_data( $_ );
         }
     }
-
     if (!isset($_SESSION["confirmed"]) || empty($_SESSION["confirmed"]) || !$_SESSION["confirmed"])
         include_once "pages/confirmation.php";
     else {
-
-        get:
         if( empty( $_GET ) || !isset( $_GET ) )
             $current_page = "image";
         else
@@ -184,7 +181,6 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
             default:
                 die("Invalid post request");
         }
+        goto get;
     }
-
-    goto get;
 }

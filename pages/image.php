@@ -63,8 +63,8 @@ if( !defined("LYDS_ENABLE_GENERATION") )
             </div>
         </fieldset>
         <script>
-            var image = <?=$image?>;
-            var rand = <?=$rand?>;
+            var image = <?=@$image?>;
+            var rand = <?=@$rand?>;
             var image_count = <?=@$stats["image_count"]?>;
         </script>
         <script src="<?=LYDS_HOSTING_SUBFOLDER?>js/images.js"></script>
