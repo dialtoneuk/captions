@@ -1,107 +1,61 @@
 <?php
-$page = get_page();
-$stats_images = [];
+//stops direct access to this file through http browser :)
+if( !defined("LYDS_ENABLE_GENERATION") )
+{
+    http_response_code(404);
+    exit;
+}
+?>
+<html lang="en">
+<?php
+    $page = get_page();
 
-if (!file_exists($_SERVER["DOCUMENT_ROOT"] . "/cache/"))
-    @mkdir($_SERVER["DOCUMENT_ROOT"] . "/cache");
+    if( LYDS_ENABLE_CACHE )
+        ob_start();
 
-top:
-if (LYDS_ENABLE_CACHE && file_exists("cache/{$page}.php") && time() < filemtime("cache/{$page}.php") + (60 * LYDS_LIST_REFRESHRATE))
-    echo(file_get_contents("cache/{$page}.php"));
-else {
-    ob_start();
-    $start = LYDS_PAGE_MAX * $page;
-    $file_name = "data/list{$page}" . LYDS_DATA_FILEEXTENSION;
-
-    if (LYDS_ENABLE_CACHE && file_exists($file_name) && time() < filemtime($file_name) + (60 * LYDS_LIST_REFRESHRATE)) {
-
-        $images = read_data($file_name);
-
-        foreach ($images as $image => $file) {
-
-            $cache_file = "cache/images/{$image}" . LYDS_DATA_FILEEXTENSION;
-
-            if (file_exists($cache_file)) {
-
-                $file = read_data($cache_file);
-                $stats_images[$image] = $file["viewed"];
-            }
-        }
-    } else {
-
-        $opened_files = [];
+    if( has_list_cache( $page ) )
+        $images = get_list_cache( $page );
+    else
         $images = [];
 
-        //todo: could move this somewhere else
-        for ($i = $start; $i < $start + LYDS_PAGE_MAX; $i++) {
-
-            $cache_file = "cache/images/{$i}" . LYDS_DATA_FILEEXTENSION;
-
-            if (file_exists($cache_file)) {
-
-                $file = read_data($cache_file);
-                $images[$i] = $file["image"];
-                $stats_images[$i] = $file["viewed"];
-            } else {
-
-                $file = get_map_filename($i);
-
-                if (isset($opened_files[$file]))
-                    $files = $opened_files[$file];
-                else
-                    $opened_files[$file] = read_data($file);
-
-                if (isset($opened_files[$file][$i]))
-                    $images[$i] = $opened_files[$file][$i];
-            }
-        }
-
-        if (!empty($images))
-            file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/{$file_name}", serialize($images));
-    }
+    include_once "templates/template_header.php";
     ?>
-    <script>
-        document.onkeydown = checkKey;
-
-        function checkKey(e) {
-
-            e = e || window.event;
-
-            if (e.keyCode == '82') {
-                //nothing
-            } else if (e.keyCode == '37') {
-                <?php
-                if( $page > 0 )
-                {
-                ?>
-                window.location.href = "<?=make_link("", ["list" => "", "page" => $page - 1])?>";
-                <?php
-                }
-                ?>
-            } else if (e.keyCode == '39') {
-                window.location.href = "<?=make_link("", ["list" => "", "page" => $page + 1])?>";
-            }
-        }
-    </script>
+    <body>
     <fieldset>
         <?php
-        $title = "page";
-        include "navbar.php";
-
+            include "navbar.php";
         ?>
         <p style="text-align: center;">
             <?php
+            if( $page > 0 )
+                echo(sprintf("<a href='%s'><<<<</a> ", make_link("", ["list" => "", "page" => $page - 1])));
 
             if (isset($stats) && isset($stats["page_count"]))
             {
 
                 $counter = 0;
-                for ($i = abs( $page - LYDS_PAGE_MAX); $i < $page; $i++) {
+                $last_i = $page - LYDS_PAGE_MAX;
 
-                    if( $counter > LYDS_PAGE_MAX )
-                        break;
+                if( $page - LYDS_PAGE_MAX < 0 )
+                    $last_i = 0;
 
-                    echo(sprintf("<a href='%s'>%d</a> ", make_link("", ["list" => "", "page" => $i]), $i));
+                for ($i = $last_i; $i < $page + LYDS_PAGE_MAX; $i++) {
+
+                    if( $last_i < 0 )
+                        continue;
+
+                    if( $i > $page )
+                        continue;
+
+                    if( $i == $page )
+                        continue;
+
+                    if( $counter < LYDS_PAGE_MAX  )
+                        echo(sprintf("<a href='%s'>%d</a> ", make_link("", ["list" => "", "page" => $i ]), $i));
+                    else
+                        continue;
+
+                    $last_i = $i;
 
                     $counter++;
                 };
@@ -128,6 +82,8 @@ else {
                 };
             }
 
+            if( isset( $stats ) && isset( $stats["page_count"] ) && $stats["page_count"] > $page )
+                echo(sprintf("<a href='%s'>>>>></a> ", make_link("", ["list" => "", "page" => $page + 1])));
             ?>
         </p>
         <?php
@@ -136,6 +92,13 @@ else {
             echo("<p>No images found...</p>");
         else
             foreach ($images as $image => $file) {
+
+                if( !isset( $file["viewed"] ) )
+                    $view_count = 0;
+                else
+                    $view_count = @$file["viewed"];
+
+                $file = $file["image"];
                 $image_location = "?hotlink&images={$image}";
                 ?>
                 <div style="text-align: right;">
@@ -144,13 +107,7 @@ else {
                         <a href='<?= make_link("", ["images" => $image]) ?>' style="color: hotpink; float: right;">view
                             caption</a>
                     </p>
-                    <span style="font-size: 2vw; float: right;">
-                           <?php
-                           if (isset ($stats_images[$image]))
-                               echo($stats_images[$image]);
-                           ?>
-                        Views
-                    </span>
+                    <span style="font-size: 2vw; float: right;"><?=$view_count?> Views</span>
                     <img class="smallimage" onclick="window.location.href = '<?= make_link("", ["images" => $image]) ?>'"
                          src="<?= $image_location ?>" alt="sissy image">
                 </div>
@@ -166,8 +123,11 @@ else {
         </span>
         </p>
     </fieldset>
+    </body>
     <?php
+        include_once "templates/template_footer.php";
 
-    file_put_contents("cache/{$page}.php", ob_get_contents());
-}
-?>
+        if( LYDS_ENABLE_CACHE )
+            file_put_contents("cache/{$page}.php", ob_get_contents());
+    ?>
+</html>

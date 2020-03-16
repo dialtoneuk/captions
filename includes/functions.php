@@ -68,11 +68,19 @@ function generate_lists($max_images = 0)
         $file_name = "/data/list{$page}" . LYDS_DATA_FILEEXTENSION;
         $file = get_map_filename($i);
 
-        if (!isset($opened_files[$file]))
-            $opened_files[$file] = read_data($file);
+        if (has_image_cache($i))
+            $images[$i] = get_image_cache($i);
+        else {
 
-        if (isset($opened_files[$file][$i]))
-            $images[$i] = $opened_files[$file][$i];
+            if (!isset($opened_files[$file]))
+                $opened_files[$file] = read_data($file);
+
+            if (isset($opened_files[$file][$i]))
+                $images[$i] = [
+                    "view_count" => 0,
+                    "image" => $opened_files[$file][$i]
+                ];
+        }
 
         if ($counter >= LYDS_PAGE_MAX) {
 
@@ -106,8 +114,8 @@ function generate_stats()
         $counter++;
     }
 
-    if( isset( $stats["image_count"] ) && !empty( $stats["image_count"] ))
-        $stats["page_count"] = floor( $stats["image_count"] / LYDS_PAGE_MAX );
+    if (isset($stats["image_count"]) && !empty($stats["image_count"]))
+        $stats["page_count"] = floor($stats["image_count"] / LYDS_PAGE_MAX);
 
     if (file_exists("confirmations" . LYDS_DATA_FILEEXTENSION)) {
 
@@ -179,6 +187,41 @@ function make_link($location, array $parameters = [])
                 $string .= "&" . $index . "=" . $parameter;
 
     return (LYDS_HOSTING_SUBFOLDER . $location . $string);
+}
+
+function get_list_cache($page)
+{
+
+    $_ = "data/list{$page}" . LYDS_DATA_FILEEXTENSION;
+
+    if (!file_exists($_))
+        return [];
+    else
+    {
+
+        return (read_data($_));
+    }
+}
+
+function has_list_cache($page)
+{
+
+    $_ = "data/list{$page}" . LYDS_DATA_FILEEXTENSION;
+    return (file_exists($_));
+}
+
+function has_image_cache($image)
+{
+
+    $_ = "cache/images/{$image}" . LYDS_DATA_FILEEXTENSION;
+    return (file_exists($_));
+}
+
+function get_image_cache($image)
+{
+
+    $_ = "cache/images/{$image}" . LYDS_DATA_FILEEXTENSION;
+    return (read_data($_));
 }
 
 function get_map_filename($image)

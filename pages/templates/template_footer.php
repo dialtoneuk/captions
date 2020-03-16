@@ -1,3 +1,11 @@
+<?php
+//stops direct access to this file through http browser :)
+if( !defined("LYDS_ENABLE_GENERATION") )
+{
+    http_response_code(404);
+    exit;
+}
+?>
 <footer style="text-align: right">
     <p style="font-size: 75%;">
         Total Captions: <?php if( isset( $stats ) && isset($stats["image_count"]) ) echo @$stats["image_count"]; else echo "0" ?> <br>
