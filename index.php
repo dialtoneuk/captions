@@ -1,6 +1,6 @@
 <?php
 /**
- *  Written by Llydia Lancaster in 2019.
+ *  Written by Llydia Lancaster in 2020.
  *  Version 2.0 of Lyds Sissy Captions <3
  */
 
