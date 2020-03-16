@@ -35,9 +35,10 @@ $image_location = "?hotlink&images={$image}";
 </script>
 <fieldset>
     <?php
-        include "navbar.php";
+    include "navbar.php";
     ?>
-    <p style="text-align: center; color: goldenrod; font-size: 75%; padding-bottom: 10px; margin: 0;">We will be moving to our own server soon! Stay put while we transfer things over. Your continued donations are appreciated!</p>
+    <p style="text-align: center; color: goldenrod; font-size: 75%; padding-bottom: 10px; margin: 0;">We will be moving
+        to our own server soon! Stay put while we transfer things over. Your continued donations are appreciated!</p>
     <img class="mainimage" id="touchsurface"
          src="<?= $image_location ?>" alt="sissy image">
     <div style="margin-top: 12px; text-align: left;">
@@ -172,13 +173,6 @@ $image_location = "?hotlink&images={$image}";
         });
     }
 </script>
-<script>
-
-</script>
-<script>
-
-</script>
-
 <?php
 //update viewed images if activated
 if (session_status() === PHP_SESSION_ACTIVE && LYDS_ENABLE_VIEWED) {

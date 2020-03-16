@@ -106,6 +106,9 @@ function generate_stats()
         $counter++;
     }
 
+    if( isset( $stats["image_count"] ) && !empty( $stats["image_count"] ))
+        $stats["page_count"] = floor( $stats["image_count"] / LYDS_PAGE_MAX );
+
     if (file_exists("confirmations" . LYDS_DATA_FILEEXTENSION)) {
 
         $data = read_data("confirmations" . LYDS_DATA_FILEEXTENSION);

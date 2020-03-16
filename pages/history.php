@@ -30,14 +30,12 @@ $start = LYDS_PAGE_MAX * $page;
             <div style="text-align: right;">
                 <p style="line-height: 1em; border-bottom: 1px solid deeppink; text-align: left;">
                     #<?= $image . " " . $file["filename"] . "." . $file["extension"] ?>
-                    viewed at <span style="color: hotpink;"><?= date("H:i:s", $time) ?></span>
+                    viewed at <span style="color: hotpink; font-size: 100%;"><?= date("H:i:s", $time) ?></span>
                     <a href='<?= make_link("", ["images" => $image]) ?>' style="color: hotpink; float: right;">view
                         caption again</a>
                 </p>
-                <a href="<?= make_link("", ["images" => $image]) ?>">
-                    <img class="smallimage"
-                         src="<?= $image_location ?>" alt="sissy image">
-                </a>
+                <img class="smallimage"
+                     src="<?= $image_location ?>" alt="sissy image">
             </div>
             <?php
             $counter_two++;

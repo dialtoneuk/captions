@@ -17,11 +17,12 @@
 define("LYDS_ENABLE_GENERATION", true);
 define("LYDS_ENABLE_VIEWED", true);
 define("LYDS_ENABLE_STATS", true);
+define("LYDS_ENABLE_CACHE", false);
 define("LYDS_GENERATION_PASSWORD", "password");//todo: remove this and add login features so admins can generate new maps
 define("LYDS_IMAGE_FOLDER", "images/");
 define("LYDS_HOSTING_SUBFOLDER", ""); //used when you have hosting which is alike www.mywebsite.com/*subfolder*/
 define("LYDS_PAYPAL_PREFIX", "lyds299");
-define("LYDS_PAGE_MAX", 32);
+define("LYDS_PAGE_MAX", 16);
 define("LYDS_MAP_FILENAME", "data/map");
 define("LYDS_STATS_REFRESHRATE", 10); //each number is a minute
 define("LYDS_LIST_REFRESHRATE", 60); //each number is a minute
