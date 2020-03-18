@@ -50,7 +50,7 @@ if( !defined("LYDS_ENABLE_GENERATION") )
                 include "navbar.php";
             ?>
             <p style="text-align: center; color: goldenrod; font-size: 75%; padding-bottom: 10px; margin: 0;">We will be moving
-                to our own server soon! Stay put while we transfer things over. Your continued donations are appreciated!</p>
+                to our own server soon! Stay put while we transfer things over. Your continued <a href="http://www.paypal.me/<?=LYDS_PAYPAL_PREFIX?>">donations</a> are appreciated!</p>
             <img class="mainimage" id="touchsurface"
                  src="<?= $image_location ?>" alt="sissy image">
             <div style="margin-top: 12px; text-align: left;">

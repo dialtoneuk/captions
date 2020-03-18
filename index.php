@@ -106,8 +106,8 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
                         echo( file_get_contents( $_ ) );
                         break;
                     }
-                    elseif( (time() < filemtime($_) + (60*LYDS_LIST_REFRESHRATE )) && isset( $stats["page_count"] ) )
-                        generate_lists( $stats["page_count"] );
+                    elseif( (time() > filemtime($_) + (60*LYDS_LIST_REFRESHRATE ) ) )
+                        generate_lists( $page );
 
                 }
                 include_once "pages/list.php";
