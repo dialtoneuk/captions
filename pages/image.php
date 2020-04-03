@@ -51,10 +51,6 @@ if( !defined("LYDS_ENABLE_GENERATION") )
             ?>
 			<img class="mainimage" id="touchsurface"
                  src="<?= $image_location ?>" alt="sissy image">
-			<h2 style="text-align: center; color: goldenrod;">We will be shutting down in 3 days due to increased server costs</h2>
-            <p style="text-align: center; color: goldenrod; font-size: 75%; padding-bottom: 10px; margin: 0;">
-				Please donate <a style="font-size: 100%;" href="http://www.paypal.me/<?=LYDS_PAYPAL_PREFIX?>">here to keep us alive!</a>
-			</p>
 			<div style="margin-top: 12px; text-align: left;">
                 <span style="font-size: 80%; color: hotpink;">This caption has been viewed <?= $viewed ?> times.</span>
                 You have viewed <i style="color: hotpink;"><?= @count(@$_SESSION["images"]) ?></i> captions.

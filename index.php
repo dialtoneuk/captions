@@ -20,12 +20,12 @@
 define("LYDS_ENABLE_GENERATION", true); //todo: remove this and add login features so admins can generate new maps
 define("LYDS_ENABLE_VIEWED", true); //Enables view counting
 define("LYDS_ENABLE_STATS", true); //Enables stats
-define("LYDS_ENABLE_CACHE", true); //Enables Cache
+define("LYDS_ENABLE_CACHE", false); //Enables Cache
 define("LYDS_GENERATION_PASSWORD", "buttplugs");//todo: remove this and add login features so admins can generate new maps
 define("LYDS_IMAGE_FOLDER", "images/");
 define("LYDS_HOSTING_SUBFOLDER", ""); //used when you have hosting which is alike www.mywebsite.com/*subfolder*/
 define("LYDS_PAYPAL_PREFIX", "lyds299");
-define("LYDS_PAGE_MAX", 16);
+define("LYDS_PAGE_MAX", 18);
 define("LYDS_MAP_FILENAME", "data/map");
 define("LYDS_STATS_REFRESHRATE", 10); //each number is a minute
 define("LYDS_LIST_REFRESHRATE", 120); //each number is a minute

@@ -19,21 +19,18 @@ if( !defined("LYDS_ENABLE_GENERATION") )
 
         switch( $current_page )
         {
+            case "images":
             case "image":
-                echo(sprintf('<i class="pinktext">Lyds Captions</i> : <u style="font-size: 1.25vw;">%s.%s</u>', @$file["filename"], $file["extension"]));
-                break;
-            case "list":
-                echo(sprintf('Page <i class="pinktext">%d</i>: showing %s elements', @$page, LYDS_PAGE_MAX ));
+                echo(sprintf('<i class="pinktext" style="font-size: 1.25vw">All:</i> <u style="font-size: 1.25vw;">%s.%s</u>', @$file["filename"], $file["extension"]));
                 break;
             case "history":
-                echo(sprintf('Page <i class="pinktext">%d</i>: showing %s elements', @$page, LYDS_PAGE_MAX ));
-                break;
-            case "images":
-                echo(sprintf('<i class="pinktext">Lyds Captions</i> : <u style="font-size: 1.25vw;">%s.%s</u>', @$file["filename"], $file["extension"]));
+            case "all":
+            case "list":
+                echo(sprintf('<i class="pinktext" style="font-size: 1.25vw">Page %d: </i> <u style="font-size: 1.25vw;">showing max %s images a page</u>', @$page, LYDS_PAGE_MAX ));
                 break;
         }
     ?>
-    <span class="navbar" style="font-size: 70%;">
+    <span class="navbar" style="font-size: 60%;">
         <?php
         switch( $current_page )
         {
