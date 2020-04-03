@@ -30,11 +30,8 @@ if (!file_exists($_SERVER["DOCUMENT_ROOT"] . "/cache/images/"))
 
             set_time_limit(600);
 
-            $time = time();
-                echo("Generating map files... <br>");
-                generate_map_files();
-            $elapsed = time() - $time;
-            echo("took {$elapsed} seconds<br>");
+            echo("Generating map files... <br>");
+            generate_map_files();
             echo("Generating stats... <br>");
             generate_stats();
             echo("Generating pages... <br>");

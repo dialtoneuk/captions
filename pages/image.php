@@ -49,16 +49,19 @@ if( !defined("LYDS_ENABLE_GENERATION") )
             <?php
                 include "navbar.php";
             ?>
-            <p style="text-align: center; color: goldenrod; font-size: 75%; padding-bottom: 10px; margin: 0;">We will be moving
-                to our own server soon! Stay put while we transfer things over. Your continued <a href="http://www.paypal.me/<?=LYDS_PAYPAL_PREFIX?>">donations</a> are appreciated!</p>
-            <img class="mainimage" id="touchsurface"
+			<img class="mainimage" id="touchsurface"
                  src="<?= $image_location ?>" alt="sissy image">
-            <div style="margin-top: 12px; text-align: left;">
+			<h2 style="text-align: center; color: goldenrod;">We will be shutting down in 3 days due to increased server costs</h2>
+            <p style="text-align: center; color: goldenrod; font-size: 75%; padding-bottom: 10px; margin: 0;">
+				Please donate <a style="font-size: 100%;" href="http://www.paypal.me/<?=LYDS_PAYPAL_PREFIX?>">here to keep us alive!</a>
+			</p>
+			<div style="margin-top: 12px; text-align: left;">
                 <span style="font-size: 80%; color: hotpink;">This caption has been viewed <?= $viewed ?> times.</span>
                 You have viewed <i style="color: hotpink;"><?= @count(@$_SESSION["images"]) ?></i> captions.
                 <span style="font-size: 100%; float: right;">
                 autoplay: <a onclick="clittymode()" id="text" style="color: hotpink">on (10s)</a>
                 & <a onclick="openFullscreen()" id="text_two" style="color: hotpink">larger</a>
+				& <a href="?hotlink&images=<?=@$image?>" id="text_two" style="color: hotpink">download/share</a>
                 </span>
             </div>
         </fieldset>
@@ -91,6 +94,10 @@ if( !defined("LYDS_ENABLE_GENERATION") )
                 if (swipedir == 'right')
                     if (image < image_count)
                         window.location.href = "?images=" + Math.abs(image + 1);
+					
+				if (swipedir == 'up')
+                    if (image < image_count)
+                        window.location.href = "?images=" + rand
             });
 
             document.onkeydown = checkKey;

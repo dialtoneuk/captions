@@ -27,6 +27,9 @@
             for real. So you have to be over 18 to continue. By clicking the button below you confirm you
             are over 18.
         </p>
+		<p style="font-size: 85%">
+		This website uses Google Analytics.
+		</p>
         <input type="submit" style="margin-left: auto; margin-right: auto; font-size: 4vh; width: 90vw; height: 20vh;" value="I am an adult">
         <input type="hidden" name="action" value="confirm">
     </form>

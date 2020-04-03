@@ -8,7 +8,30 @@ if( !defined("LYDS_ENABLE_GENERATION") )
 ?>
 <head>
     <title>Lyds Sissy Captions</title>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-162066704-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-162066704-1');
+	</script>
+	<meta name="title" content="Lyds Sissy Captions">
+	<meta name="description" content="Adult Entertainment">
+	<meta name="keywords" content="sissy, captions, sissy, feminisation, sissification, princess, pink, bimbo">
+	<meta name="robots" content="index, follow">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="language" content="English">
+	<meta name="revisit-after" content="2 days">
+	<meta name="author" content="Llydia Lancaster">
     <style>
+
+		fieldset{
+			margin: 0;
+			padding: 0;
+			border: 1px solid deeppink;
+		}
 
         span {
             font-size: 50%;
@@ -42,7 +65,7 @@ if( !defined("LYDS_ENABLE_GENERATION") )
         /* Extra small devices (phones, 600px and down) */
         @media only screen and (max-width: 600px) {
             .mainimage{
-                height: 25%;
+                height: 50%;
             }
 
         }
@@ -50,7 +73,7 @@ if( !defined("LYDS_ENABLE_GENERATION") )
         /* Small devices (portrait tablets and large phones, 600px and up) */
         @media only screen and (min-width: 600px){
             .mainimage{
-                height: 40%;
+                height: 60%;
             }
         }
 
@@ -58,14 +81,14 @@ if( !defined("LYDS_ENABLE_GENERATION") )
         @media only screen and (min-width: 768px)
         {
             .mainimage{
-                height: 55%;
+                height: 70%;
             }
         }
 
         /* Large devices (laptops/desktops, 992px and up) */
         @media only screen and (min-width: 992px) {
             .mainimage{
-                height: 65%;
+                height: 80%;
             }
         }
 
@@ -73,7 +96,7 @@ if( !defined("LYDS_ENABLE_GENERATION") )
         @media only screen and (min-width: 1200px)
         {
             .mainimage{
-                height: 100%;
+                height: 90%;
             }
         }
 

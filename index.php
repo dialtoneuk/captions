@@ -20,15 +20,15 @@
 define("LYDS_ENABLE_GENERATION", true); //todo: remove this and add login features so admins can generate new maps
 define("LYDS_ENABLE_VIEWED", true); //Enables view counting
 define("LYDS_ENABLE_STATS", true); //Enables stats
-define("LYDS_ENABLE_CACHE", false); //Enables Cache
-define("LYDS_GENERATION_PASSWORD", "password");//todo: remove this and add login features so admins can generate new maps
+define("LYDS_ENABLE_CACHE", true); //Enables Cache
+define("LYDS_GENERATION_PASSWORD", "buttplugs");//todo: remove this and add login features so admins can generate new maps
 define("LYDS_IMAGE_FOLDER", "images/");
 define("LYDS_HOSTING_SUBFOLDER", ""); //used when you have hosting which is alike www.mywebsite.com/*subfolder*/
 define("LYDS_PAYPAL_PREFIX", "lyds299");
 define("LYDS_PAGE_MAX", 16);
 define("LYDS_MAP_FILENAME", "data/map");
 define("LYDS_STATS_REFRESHRATE", 10); //each number is a minute
-define("LYDS_LIST_REFRESHRATE", 60); //each number is a minute
+define("LYDS_LIST_REFRESHRATE", 120); //each number is a minute
 define("LYDS_DATA_FILEEXTENSION", ".data");
 define("LYDS_MODULUS_NUMBER", 3); //don't ask me to explain this :)
 
@@ -94,6 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
         switch( $current_page )
         {
 
+			case "all":
             case "list":
                 $page = get_page();
 
@@ -106,9 +107,8 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
                         echo( file_get_contents( $_ ) );
                         break;
                     }
-                    elseif( (time() > filemtime($_) + (60*LYDS_LIST_REFRESHRATE ) ) )
-                        generate_lists( $page );
-
+					else
+						generate_lists( $page );
                 }
                 include_once "pages/list.php";
                 break;
@@ -128,15 +128,6 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
                     include_once "pages/generation.php";
                 break;
             case "image":
-                include_once "pages/image.php";
-                if (session_status() === PHP_SESSION_ACTIVE && LYDS_ENABLE_VIEWED)
-                    if( isset( $file ) )
-                        if (!isset($_SESSION["images"])) {
-                            $_SESSION["images"] = [];
-                            $_SESSION["images"][$image] = ["image" => $file, "time" => time()];
-                        } else
-                            $_SESSION["images"][$image] = ["image" => $file, "time" => time()];
-                break;
             case "images":
                 include_once "pages/image.php";
                 if (session_status() === PHP_SESSION_ACTIVE && LYDS_ENABLE_VIEWED)
